@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>用户注册界面</title>
+    <link href="~/Scripts/style.css" rel="stylesheet" />
+    <!-- Iconos -->
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    
+    <script src="~/Scripts/vector.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="output">
+            <div class="containerT">
+
+                <form class="form" id="entry_form">
+
+                    用户名<input type="text" placeholder="用户名" id="entry_name" value="admin">
+                    密码<input type="password" placeholder="密码" id="entry_password">
+                    重复密码<input type="password" placeholder="重复密码" id="entry_password2">
+                    性别
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="radio" name="sexrodio"    value=1 checked="checked">小仙女
+                            </td>
+                            <td>
+                                <input type="radio" name="sexrodio"  value=0 >小帅哥
+                            </td>
+                        </tr>
+                    </table>
+                    手机号码<input type="text" placeholder="手机号码" id="entry_tel">
+                    邮箱地址<input type="email" placeholder="邮箱地址" id="entry_Email">
+                    <table>
+                        <tr>
+                            <td>
+                                <button type="button" id="entry_btn" onclick=a()>提交</button>
+                            </td>
+                            <td>
+                                <button type="button" id="entry_login" onclick="login()">登录</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="button" id="entry_Full" onclick="q()">全屏</button>
+
+                    <div id="prompt" class="prompt"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //全屏 也可以按F11
+ 
+        var count = 0;
+        //全屏显示
+        function q() {
+            count++;
+            if (count % 2 != 0) {
+                var docElm = document.documentElement;
+                //W3C
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen();
+                }
+                //FireFox
+                else if (docElm.mozRequestFullScreen) {
+                    docElm.mozRequestFullScreen();
+                }
+                //Chrome等
+                else if (docElm.webkitRequestFullScreen) {
+                    docElm.webkitRequestFullScreen();
+                }
+                //IE11
+                else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            }
+            else {
+                tq();
+            }
+        }
+        //退出全屏
+        function tq() {
+
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+            else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            }
+            else if (document.webkitCancelFullScreen) {
+                document.webkitCancelFullScreen();
+            }
+            else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+
+        }
+
+        $(function () {
+            Victor("container", "output");   //登陆背景函数
+            $("#entry_name").focus();
+            $(document).keydown(function (event) {
+                if (event.keyCode == 13) {
+                    $("#entry_btn").click();
+                }
+            });
+        });
+        //返回登录页
+        function login()
+        {
+            window.location.href = '../Home/Index';
+
+        }
+        //注册
+        function a()
+        {
+            var name = $('#entry_name').val();
+            var sex = $('input[name="sexrodio"]:checked').val();
+            var tel = $('#entry_tel').val();
+            var pass = $('#entry_password').val();
+            var email = $('#entry_Email').val();
+            //判断数据格式
+            if (pass == "密码" || tel == "手机号码" || email == "邮箱地址") {
+                alert("你的输入存在默认值哦！！！");
+            }
+            else {
+                get(name, sex, tel, pass, email)
+            }
+        }
+        //调用注册接口
+        function get(name,sex,tel,pass,email)
+        {
+
+            //数据发送到后台
+            var vip = "localhost:53559";
+            var a2url = 'http://' + vip + '/HomeInterface/Register';
+            $.ajax({
+                type: "POST",  //提交方式  
+
+                url: a2url,//路径  
+                data: {
+                    name: name, sex: sex, tel: tel, pass: pass, email: email
+                },
+                dataType: "Text",
+                success: function (result) {//返回数据根据结果进行相应的处理  
+
+                    alert(result);
+                },
+                error: function () {
+                    alert("没返回");
+                }
+            });
+
+        }
+    </script>
+</body>
+</html>

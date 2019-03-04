@@ -1,0 +1,535 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/font_Icon/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/chat.css">
+    <link rel="shortcut icon" href="~/img/favicon.ico">
+    <link href="~/Content/Background/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="~/Content/Background/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="~/Content/Background/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="~/Content/Background/css/plugins/steps/jquery.steps.css" rel="stylesheet">
+    <link href="~/Content/Background/css/animate.css" rel="stylesheet">
+    <link href="~/Content/Background/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="~/Content/reset.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="~/Content/style2.css">
+    <!--[if IE]>
+        <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+    <script src="~/Scripts/modernizr.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.0.js"></script>
+    <script src="~/Scripts/velocity.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
+</head>
+<body>
+    <div>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox">
+                    <table align="center" id="ibox">
+                        <tr id=0></tr>
+                        <tr id=1></tr>
+                        <tr id=2></tr>
+                        <tr id=3></tr>
+                        <tr id=4></tr>
+                        <tr id=5></tr>
+                        <tr id=6></tr>
+                        <tr id=7></tr>
+                        <tr id=8></tr>
+                        <tr id=9></tr>
+                        <tr id=10></tr>
+                        <tr id=11></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="chatContainer">
+        <div class="chatBtn">
+            <i class="iconfont icon-xiaoxi1"></i>
+        </div>
+        <div class="chat-message-num">10</div>
+        <div class="chatBox" ref="chatBox">
+            <div class="chatBox-head">
+                <div class="chatBox-head-one">
+                    Conversations
+                    <div class="chat-close" style="margin: 10px 10px 0 0;font-size: 14px">关闭</div>
+                </div>
+                <div class="chatBox-head-two">
+                    <div class="chat-return">返回</div>
+                    <div class="chat-people">
+                        <div class="ChatInfoHead">
+                            <img src="" alt="头像" />
+                        </div>
+                        <div class="ChatInfoName">1</div>
+                    </div>
+                    <div class="chat-close">关闭</div>
+                </div>
+            </div>
+            <div class="chatBox-info">
+                <div class="chatBox-list" ref="chatBoxlist" id="chatBox-list">
+                    @*人物列表*@
+            
+                </div>
+                @*点开后的聊天内容画面*@
+                <div class="chatBox-kuang" ref="chatBoxkuang">
+                    <div class="chatBox-content">
+                        @*聊天内容*@
+                        <div class="chatBox-content-demo" id="chatBox-content-demo">
+                            <div class="clearfloat">
+                                <div class="author-name">
+                                    <small class="chat-date">2017-12-02 14:26:58</small>
+                                </div>
+                                <div class="left">
+                                    <div class="chat-avatars"><img src="~/img/chat/icon01.png" alt="头像" /></div>
+                                    <div class="chat-message">
+                                        给你看张图
+                                    </div>
+                                </div>
+                            </div>
+                            @*左边聊天人*@
+                            <div class="clearfloat">
+                                <div class="author-name">
+                                    <small class="chat-date">2017-12-02 14:26:58</small>
+                                </div>
+                                <div class="left">
+                                    <div class="chat-avatars"><img src="~/img/chat/icon01.png" alt="头像" /></div>
+                                    <div class="chat-message">
+                                        <img src="~/img/chat/1.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            @*右边聊天人*@
+                            <div class="clearfloat">
+                                <div class="author-name">
+                                    <small class="chat-date">2017-12-02 14:26:58</small>
+                                </div>
+                                <div class="right">
+                                    <div class="chat-message">嗯，适合做壁纸</div>
+                                    <div class="chat-avatars"><img src="~/img/chat/icon02.png" alt="头像" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*输入栏*@
+                    <div class="chatBox-send">
+                        <div class="div-textarea" contenteditable="true"></div>
+                        <div>
+                            <button id="chat-biaoqing" class="btn-default-styles">
+                                <i class="iconfont icon-biaoqing"></i>
+                            </button>
+                            <label id="chat-tuxiang" title="发送图片" for="inputImage" class="btn-default-styles">
+                                <input type="file" onchange="selectImg(this)" accept="image/jpg,image/jpeg,image/png"
+                                       name="file" id="inputImage" class="hidden">
+                                <i class="iconfont icon-tuxiang"></i>
+                            </label>
+                            <button id="chat-fasong" class="btn-default-styles">
+                                <i class="iconfont icon-fasong"></i>
+                            </button>
+                        </div>
+                        <div class="biaoqing-photo">
+                            <ul>
+                                <li><span class="emoji-picker-image" style="background-position: -9px -18px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -40px -18px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -71px -18px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -102px -18px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -133px -18px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -164px -18px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -9px -52px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -40px -52px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -71px -52px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -102px -52px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -133px -52px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -164px -52px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -9px -86px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -40px -86px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -71px -86px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -102px -86px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -133px -86px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -164px -86px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -9px -120px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -40px -120px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -71px -120px;"></span></li>
+                                <li>
+                                    <span class="emoji-picker-image" style="background-position: -102px -120px;"></span>
+                                </li>
+                                <li>
+                                    <span class="emoji-picker-image" style="background-position: -133px -120px;"></span>
+                                </li>
+                                <li>
+                                    <span class="emoji-picker-image" style="background-position: -164px -120px;"></span>
+                                </li>
+                                <li><span class="emoji-picker-image" style="background-position: -9px -154px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -40px -154px;"></span></li>
+                                <li><span class="emoji-picker-image" style="background-position: -71px -154px;"></span></li>
+                                <li>
+                                    <span class="emoji-picker-image" style="background-position: -102px -154px;"></span>
+                                </li>
+                                <li>
+                                    <span class="emoji-picker-image" style="background-position: -133px -154px;"></span>
+                                </li>
+                                <li>
+                                    <span class="emoji-picker-image" style="background-position: -164px -154px;"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        //得到传过来的参数
+        function geid() {
+            urlinfo = window.location.href; //获取当前页面的url
+            len = urlinfo.length;//获取url的长度
+            offset = urlinfo.indexOf("?");//设置参数字符串开始的位置
+            newsidinfo = urlinfo.substr(offset, len)//取出参数字符串 这里会获得类似“id=1”这样的字符串
+            newsids = newsidinfo.split("=");//对获得的参数字符串按照“=”进行分割
+            newsid = newsids[1];//得到参数值  
+            newsname = newsids[0];//得到参数名字
+            return newsid;
+        }
+
+   @*连接signalr的管道*@
+        var conn=$.connection("/myconnection");
+        conn.start().done(function(data){
+            console.log("当前clientID="+data.id);
+        });
+        @*//接受服务器信息*@
+        conn.received(function (data){
+        @*在信息中打印出来*@
+        console.log(data);
+        });
+
+        //进入聊天室
+        $(document).ready(
+            function () {
+                var conn = $.connection("/myconnection");
+                //连接管道
+                conn.start();
+                //点击进入房间按钮，进入房间
+                $(document).on('click', '.chat-list-people', function () {
+                    var textContent = $(".div-textarea").html()
+                    //得到设计师的名字
+                    var textname = $(".getname").html()
+                    var id = geid() + textname
+                    //房间名为 userid = 设计师名字
+                    conn.send({ RoomName: id, Action: "welcome" });
+
+                });
+                //点击发送 btn-default-styles
+                $(document).on('click', '.btn-default-styles', function () {
+                    //得到聊天内容
+                    var textContent = $(".div-textarea").html()
+                    //得到设计师的名字
+                    var textname = $(".getname").html()
+                    //发送后清空输入框
+                    $(".div-textarea").html("");
+                  
+                    var id = geid() + textname
+                 
+                    //得到设计师的名字
+                    conn.send({ RoomName: id, Action: "", Data: "我的ID为" + geid() + "：" + textContent });
+
+                });
+
+                //显示服务器接收到的信息（打印一下）
+                conn.received(function (data) {
+                    //  console.log(data);
+                    if (data != null)
+                    {//读取发送内容
+
+                        $(".chatBox-content-demo").append(" <div class=\"clearfloat\">"+
+                               " <div class=\"author-name\">"+
+                                    "<small class=\"chat-date\">2017-12-02 14:26:58</small> </div>  <div class=\"left\">"
+                                 +   "<div class=\"chat-avatars\"><img src=\"../img/chat/icon01.png\" alt=\"头像\" /></div>"
+                                  + " <div class=\"chat-message\">"+data+ "</div> </div> </div>");
+                        //聊天框默认最底部
+                        $(document).ready(function () {
+                            $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+                        });
+                    }
+
+                });
+
+            })
+        //网站运行时加载
+        window.onload = function ()
+        {
+            var vip = "localhost:53559";
+            var a2url = 'http://' + vip + '/HomeInterface/getperson';
+            //得到设计师
+            $.ajax({
+                type: "POST",  //提交方式
+                url: a2url,//路径
+                data: { Dentity:1},
+                dataType: "Text",
+                success: function (result) {//返回数据根据结果进行相应的处理
+                    var obj2 = JSON.parse(result);
+                    var j = 1;
+                    for (var i in obj2) {
+
+                        div(j++, obj2[i].Name, obj2[i].Sex, obj2[i].img, obj2[i].Tel);
+                        //alert(obj2[i].img);
+                        addperson(obj2[i].Name);
+                    }
+
+                },
+                error: function () {
+                    alert("没返回");
+                }
+            });
+
+
+
+           
+        }
+
+        //添加联系人
+        function addperson(name)
+        {
+            var boady1 = document.getElementById("chatBox-list");
+            var div1 = document.createElement("div");
+            div1.setAttribute("class", "chat-list-people");
+            var div2 = document.createElement("div");
+            var img1 = document.createElement("img");
+            img1.src = "../img/chat/icon01.png"
+            div2.appendChild(img1);
+            div1.appendChild(div2);
+          var  div3=document.createElement("div");
+            div3.setAttribute("class", "chat-name")
+            var p1 = document.createElement("p");
+            p1.setAttribute("class", "getname")
+            p1.appendChild(document.createTextNode(name));
+            div3.appendChild(p1);
+            div1.appendChild(div3);
+            var div4 = document.createElement("div");
+            div4.setAttribute("class", "message-num")
+            div4.appendChild(document.createTextNode(0));
+            div1.appendChild(div4);
+            boady1.appendChild(div1);
+            var name2 = "\""+name+"\"";
+            //  div1.setAttribute("onclick", "tab("+name+",\"../img/chat/icon01.png\")");
+            div1.setAttribute("onclick", "tab(" + name2 + ",\"../img/chat/icon01.png\")");
+        }
+        function ce() {
+
+        }
+
+    screenFuc();
+    function screenFuc() {
+        var topHeight = $(".chatBox-head").innerHeight();//聊天头部高度
+        //屏幕小于768px时候,布局change
+        var winWidth = $(window).innerWidth();
+        if (winWidth <= 768) {
+            var totalHeight = $(window).height(); //页面整体高度
+            $(".chatBox-info").css("height", totalHeight - topHeight);
+            var infoHeight = $(".chatBox-info").innerHeight();//聊天头部以下高度
+            //中间内容高度
+            $(".chatBox-content").css("height", infoHeight - 46);
+            $(".chatBox-content-demo").css("height", infoHeight - 46);
+
+            $(".chatBox-list").css("height", totalHeight - topHeight);
+            $(".chatBox-kuang").css("height", totalHeight - topHeight);
+            $(".div-textarea").css("width", winWidth - 106);
+        } else {
+            $(".chatBox-info").css("height", 495);
+            $(".chatBox-content").css("height", 448);
+            $(".chatBox-content-demo").css("height", 448);
+            $(".chatBox-list").css("height", 495);
+            $(".chatBox-kuang").css("height", 495);
+            $(".div-textarea").css("width", 260);
+        }
+    }
+    (window.onresize = function () {
+        screenFuc();
+    })();
+    //未读信息数量为空时
+    var totalNum = $(".chat-message-num").html();
+    if (totalNum == "") {
+        $(".chat-message-num").css("padding", 0);
+    }
+    $(".message-num").each(function () {
+        var wdNum = $(this).html();
+        if (wdNum == "") {
+            $(this).css("padding", 0);
+        }
+    });
+
+    //打开聊天框
+    function tab(name, img) {
+        var n = $(this).index();
+        $(".chatBox-head-one").toggle();
+        $(".chatBox-head-two").toggle();
+        $(".chatBox-list").fadeToggle();
+        $(".chatBox-kuang").fadeToggle();
+        //传名字
+        $(".ChatInfoName").text(name);
+
+        //传头像
+        $(".ChatInfoHead>img").attr("src", img);
+
+        //聊天框默认最底部
+        $(document).ready(function () {
+            $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+        });
+    }
+
+    //打开/关闭联系列表
+    $(".chatBtn").click(function () {
+        $(".chatBox").toggle(10);
+    })
+    $(".chat-close").click(function () {
+        $(".chatBox").toggle(10);
+    })
+
+
+    //返回列表
+    $(".chat-return").click(function () {
+        $(".chatBox-head-one").toggle(1);
+        $(".chatBox-head-two").toggle(1);
+        $(".chatBox-list").fadeToggle(1);
+        $(".chatBox-kuang").fadeToggle(1);
+    });
+
+    //      发送信息
+    $("#chat-fasong").click(function () {
+        var textContent = $(".div-textarea").html().replace(/[\n\r]/g, '<br>')
+
+        if (textContent != "") {
+            $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
+                "<div class=\"author-name\"><small class=\"chat-date\">2017-12-02 14:26:58</small> </div> " +
+                "<div class=\"right\"> <div class=\"chat-message\"> " + textContent + " </div> " +
+                "<div class=\"chat-avatars\"><img src=\"../img/chat/icon01.png\" alt=\"头像\" /></div> </div> </div>");
+            //发送后清空输入框
+           // $(".div-textarea").html("");
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        }
+    });
+
+    //      发送表情
+    $("#chat-biaoqing").click(function () {
+        $(".biaoqing-photo").toggle();
+    });
+    $(document).click(function () {
+        $(".biaoqing-photo").css("display", "none");
+    });
+    $("#chat-biaoqing").click(function (event) {
+        event.stopPropagation();//阻止事件
+    });
+
+    $(".emoji-picker-image").each(function () {
+        $(this).click(function () {
+            var bq = $(this).parent().html();
+            console.log(bq)
+            $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
+                "<div class=\"author-name\"><small class=\"chat-date\">2017-12-02 14:26:58</small> </div> " +
+                "<div class=\"right\"> <div class=\"chat-message\"> " + bq + " </div> " +
+                "<div class=\"chat-avatars\"><img src=\"../img/chat/icon01.png\" alt=\"头像\" /></div> </div> </div>");
+            //发送后关闭表情框
+            $(".biaoqing-photo").toggle();
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        })
+    });
+
+    //      发送图片
+    function selectImg(pic) {
+        if (!pic.files || !pic.files[0]) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+            var images = evt.target.result;
+            $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
+                "<div class=\"author-name\"><small class=\"chat-date\">2017-12-02 14:26:58</small> </div> " +
+                "<div class=\"right\"> <div class=\"chat-message\"><img src=" + images + "></div> " +
+                "<div class=\"chat-avatars\"><img src=\"../img/chat/icon01.png\" alt=\"头像\" /></div> </div> </div>");
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        };
+        reader.readAsDataURL(pic.files[0]);
+
+    }
+
+    function div(j, Name, Money, img, Remark) {
+        //加载table
+        var table1 = document.getElementById("ibox");
+        var td = document.createElement("td");
+        var div1 = document.createElement("div");
+        div1.setAttribute("class", "team-members row");
+        var div2 = document.createElement("div");
+        div2.setAttribute("class", "single-member effect-1");
+
+        var div2a = document.createElement("div");
+        div2a.setAttribute("class", "member-image");
+        var img1 = document.createElement("img");
+        img1.src = "../img/member_140x145.jpg";
+        img1.alt = "Member";
+        div2a.appendChild(img1);
+
+        var div2b = document.createElement("div");
+        div2b.setAttribute("class", "member-info");
+        var h1 = document.createElement("h3");
+        var h2 = document.createElement("h2");
+        var p1 = document.createElement("p");
+        h1.appendChild(document.createTextNode(Name));
+        h2.appendChild(document.createTextNode("性别:" + Money));
+        p1.appendChild(document.createTextNode("电话号码:" + Remark));
+        div2b.appendChild(h1);
+        div2b.appendChild(h2);
+        div2b.appendChild(p1);
+        var div2ba = document.createElement("div");
+        div2ba.setAttribute("class", "social-touch");
+        var aba = document.createElement("a");
+        aba.setAttribute("class", "fb-touch");
+        aba.href = "#";
+        var abb = document.createElement("a");
+        abb.setAttribute("class", "tweet-touch");
+        abb.href = "www.baidu.com";
+        var abc = document.createElement("a");
+        abc.setAttribute("class", "linkedin-touch");
+        abc.href = "www.baidu.com";
+        div2ba.appendChild(aba);
+        div2ba.appendChild(abb);
+        div2ba.appendChild(abc);
+
+        div2b.appendChild(div2ba);
+
+        div2.appendChild(div2a);
+        div2.appendChild(div2b);
+
+        div1.appendChild(div2);
+
+        td.appendChild(div1);
+        var tr1 = document.getElementById(parseInt((j - 1) / 4));
+        tr1.appendChild(td);
+    }
+
+    </script>
+
+</body>
+</html>
+
+

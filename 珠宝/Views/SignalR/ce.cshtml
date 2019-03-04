@@ -1,0 +1,63 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.0.js"></script>
+    <script typeof="text/javascript">
+      
+        @*连接signalr的管道*@
+        var conn=$.connection("/myconnection");
+        conn.start().done(function(data){
+        console.log("当前clientID="+data.id);
+        });
+        @*//接受服务器信息*@
+        conn.received(function (data){
+        @*在信息中打印出来*@
+        console.log(data);
+        });
+    
+        //进入聊天室
+        $(document).ready(
+            function () {
+                var conn = $.connection("/myconnection");
+                //连接管道
+                conn.start();
+                //点击进入房间按钮，进入房间
+                $("#room1").click(function () {
+                    //send 是向管道发送消息的方法,发送一个welcome
+                   
+                    conn.send({ RoomName: "room1", Action: "welcome" });
+                });
+                //点击发送消息按钮
+                $("#send").click(function () {
+                 
+                    conn.send({ RoomName: "room1", Action: "", Data: $("#msg").val() });
+                   // alert(conn.Data);
+                   
+                });
+                //显示服务器接收到的信息（打印一下）
+                conn.received(function (data) {
+                    //  console.log(data);
+                    if (data != null)
+                        alert(data); 
+                });
+            })
+
+    </script>
+    <title></title>
+</head>
+<body>
+    <div>
+   <input id="room1" type="button" value="房间1"/>
+        <input type="text" id="msg"/>
+        <input type="button" id="send" value="发送"/>
+        
+    </div>
+</body>
+</html>

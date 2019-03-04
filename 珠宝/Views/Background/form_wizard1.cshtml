@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>钻石上传向导</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="~/img/favicon.ico">
+    <link href="~/Content/Background/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="~/Content/Background/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="~/Content/Background/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="~/Content/Background/css/plugins/steps/jquery.steps.css" rel="stylesheet">
+    <link href="~/Content/Background/css/animate.css" rel="stylesheet">
+    <link href="~/Content/Background/css/style.css?v=4.1.0" rel="stylesheet">
+
+    <link href="~/Content/reset.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="~/Content/style2.css">
+    <!--[if IE]>
+        <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script src="~/Scripts/modernizr.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/velocity.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="jumbotron">
+                    <h1>钻石向导</h1>
+                    <p>快速上传钻石种类。</p>
+                    <p>
+                        <a href="http://www.jquery-steps.com/GettingStarted" target="_blank" class="btn btn-primary btn-lg" role="button">帮助文档</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>钻石上传向导</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="form_wizard.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="form_wizard.html#">选项1</a>
+                                </li>
+                                <li>
+                                    <a href="form_wizard.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <p>
+                            这是一个简单的表单向导示例
+                        </p>
+                        <form action="~/HomeInterface/uploadgoods" method="post" enctype="multipart/form-data">
+                            <div id="wizard">
+                                <h1>第一步</h1>
+                                <div class="step-content">
+                                    <div class="text-center m-t-md">
+                                        <div class="leftImage">
+                                            <input type="file" name="img" id="img" /><br />
+                                        </div>
+                                    </div>
+                                </div>
+                                <h1>第二步</h1>
+                                <div class="step-content">
+                                    <div class="text-center m-t-md">
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="珠宝名字">
+                                        <input type="text" name="money" class="form-control" id="money" placeholder="金额">
+                                    </div>
+                                </div>
+                                <h1>第三步</h1>
+                                <div class="step-content">
+                                    <div class="text-center m-t-md">
+                                        <input type="text" name="remark" id="remark" class="form-control" placeholder="备注">
+                                        <input type="submit" value="上传" style="background:yellow;font-style:inherit;height:60%" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox">
+                    <table align="center" id="ibox">
+                        <tr id=0></tr>
+                        <tr id=1></tr>
+                        <tr id=2></tr>
+                        <tr id=3></tr>
+                        <tr id=4></tr>
+                        <tr id=5></tr>
+                        <tr id=6></tr>
+                        <tr id=7></tr>
+                        <tr id=8></tr>
+                        <tr id=9></tr>
+                        <tr id=10></tr>
+                        <tr id=11></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="~/Scripts/Background/js/jquery.min.js?v=2.1.4"></script>
+    <script src="~/Scripts/Background/js/bootstrap.min.js?v=3.3.6"></script>
+
+    <!-- 自定义js -->
+    <script src="~/Scripts/Background/js/content.js?v=1.0.0"></script>
+
+    <!-- Steps -->
+    <script src="~/Scripts/jquery.steps.min.js"></script>
+    <!-- Jquery Validate -->
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/messages_zh.min.js"></script>
+
+    <script type="text/javascript">
+
+ 
+
+        window.onload = function () {
+            var vip = "localhost:53559";
+            var a2url = 'http://' + vip + '/HomeInterface/getgoods';
+            $.ajax({
+                type: "POST",  //提交方式
+                url: a2url,//路径
+                data: {},
+                dataType: "Text",
+                success: function (result) {//返回数据根据结果进行相应的处理
+                    var obj2 = JSON.parse(result);
+                    var j = 1;
+                    for (var i in obj2) {
+
+                        div(j++, obj2[i].Name, obj2[i].Money, obj2[i].img, obj2[i].Remark);
+                        //alert(obj2[i].img);
+                    }
+
+                },
+                error: function () {
+                    alert("没返回");
+                }
+            });
+
+
+        }
+        function div(j, Name, Money, img, Remark)
+        {
+            //加载table
+            var table1 = document.getElementById("ibox");
+            var td = document.createElement("td");
+            var div1 = document.createElement("div");
+            div1.setAttribute("class", "team-members row");
+            var div2 = document.createElement("div");
+            div2.setAttribute("class", "single-member effect-1");
+
+            var div2a = document.createElement("div");
+            div2a.setAttribute("class", "member-image");
+            var img1 = document.createElement("img");
+            img1.src = "../img/member_140x145.jpg";
+            img1.alt = "Member";
+            div2a.appendChild(img1);
+
+            var div2b = document.createElement("div");
+            div2b.setAttribute("class", "member-info");
+            var h1 = document.createElement("h3");
+            var h2 = document.createElement("h2");
+            var p1 = document.createElement("p");
+            h1.appendChild(document.createTextNode(Name));
+            h2.appendChild(document.createTextNode("金额:"+Money));
+            p1.appendChild(document.createTextNode(Remark));
+            div2b.appendChild(h1);
+            div2b.appendChild(h2);
+            div2b.appendChild(p1);
+            var div2ba = document.createElement("div");
+            div2ba.setAttribute("class", "social-touch");
+            var aba = document.createElement("a");
+            aba.setAttribute("class", "fb-touch");
+            aba.href = "#";
+            var abb = document.createElement("a");
+            abb.setAttribute("class", "tweet-touch");
+            //abb.href = "www.baidu.com";
+           
+            var abc = document.createElement("a");
+            abc.setAttribute("class", "linkedin-touch");
+          // abc.href = "www.baidu.com";
+           // abc.click = del();
+            div2ba.appendChild(aba);
+            div2ba.appendChild(abb);
+            div2ba.appendChild(abc);
+
+            div2b.appendChild(div2ba);
+
+            div2.appendChild(div2a);
+            div2.appendChild(div2b);
+
+            div1.appendChild(div2);
+
+            td.appendChild(div1);
+            var tr1 = document.getElementById(parseInt((j - 1) / 4));
+            tr1.appendChild(td);
+        }
+        //动态生成的点击
+ //
+        $(document).on('click', '.tweet-touch', function () {
+
+            alert('你确定删除');
+        })
+
+        $(document).ready(function () {
+            $("#wizard").steps();
+            $("#form").steps({
+                bodyTag: "fieldset",
+                onStepChanging: function (event, currentIndex, newIndex) {
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>

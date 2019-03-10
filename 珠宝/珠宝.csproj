@@ -179,6 +179,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BackgroundController.cs" />
+    <Compile Include="Controllers\GuideController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeInterfaceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -301,6 +302,12 @@
     <Content Include="Content\style2.css" />
     <Content Include="Content\wheelmenu.css" />
     <Content Include="Content\xcConfirm.css" />
+    <Content Include="css\css2\component.css" />
+    <Content Include="css\css2\cs-select.css" />
+    <Content Include="css\css2\cs-skin-boxes.css" />
+    <Content Include="css\css2\demo.css" />
+    <Content Include="css\css2\normalize.css" />
+    <Content Include="css\css2\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\Background\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\Background\fonts\glyphicons-halflings-regular.svg" />
@@ -370,9 +377,20 @@
     <Content Include="img\pubu\item-5.png" />
     <Content Include="img\social-icons.png" />
     <Content Include="img\spig.png" />
+    <Content Include="js\1b4e36af86e7ae4e4d4f8a3dc.js" />
+    <Content Include="js\bas.min.1.1.3.js" />
+    <Content Include="js\classie.js" />
+    <Content Include="js\fullscreenForm.js" />
+    <Content Include="js\index.js" />
     <Content Include="js\jquery-1.9.1.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="Content\sortable.min.css" />
+    <Content Include="js\LuminosityHighPassShader.js" />
+    <Content Include="js\modernizr.custom.js" />
+    <Content Include="js\OrbitControls.js" />
+    <Content Include="js\selectFx.js" />
+    <Content Include="js\three_post.js" />
+    <Content Include="js\UnrealBloomPass.js" />
     <Content Include="js\xcConfirm.js" />
     <Content Include="Scripts\Background\jquery.steps.min.js" />
     <Content Include="Scripts\Background\jquery.validate.min.js" />
@@ -861,16 +879,18 @@
     <Content Include="Views\Home\chat.cshtml" />
     <Content Include="Views\Home\pubu.cshtml" />
     <Content Include="Views\Home\ce.cshtml" />
+    <Content Include="Views\Guide\Index.cshtml" />
+    <Content Include="Views\Guide\Animation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="css\" />
     <Folder Include="font_Icon\" />
     <Folder Include="img2\" />
     <Folder Include="imghear\" />
     <Folder Include="layui\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Scripts\pubu\" />
+    <Folder Include="Views\NewFolder1\" />
     <Folder Include="Views\SignalR\css\" />
     <Folder Include="Views\SignalR\font_Icon\" />
     <Folder Include="Views\SignalR\img\" />

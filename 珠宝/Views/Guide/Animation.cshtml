@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>定制分析界面</title>
+
+
+
+    <link rel="stylesheet" href="~/css/css2/style.css">
+    @*<meta http-equiv="refresh" content="10;url=http://www.baidu.com" />*@ 
+
+</head>
+
+<body>
+    <div id="three-container">
+        正在生成定制
+    </div>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/three.js/r80/three.min.js'></script>
+    <script src='~/js/bas.min.1.1.3.js'></script>
+    <script src='~/js/three_post.js'></script>
+    <script src='~/js/OrbitControls.js'></script>
+    <script src='~/js/LuminosityHighPassShader.js'></script>
+    <script src='~/js/UnrealBloomPass.js'></script>
+    <script src='~/js/1b4e36af86e7ae4e4d4f8a3dc.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script>
+
+    <script src="~/js/index.js"></script>
+    <script type="text/javascript">
+        function geid() {
+            urlinfo = window.location.href; //获取当前页面的url
+            len = urlinfo.length;//获取url的长度
+            offset = urlinfo.indexOf("?");//设置参数字符串开始的位置
+            newsidinfo = urlinfo.substr(offset, len)//取出参数字符串 这里会获得类似“id=1”这样的字符串
+            newsids = newsidinfo.split("=");//对获得的参数字符串按照“=”进行分割
+            newsid = newsids[1];//得到参数值  
+            newsname = newsids[0];//得到参数名字
+            return newsid;
+        }
+      //自动跳转页页面
+
+        function jumpurl() {
+            window.location.href = '../Home/stylist?userid=' + geid()
+        }
+        setTimeout('jumpurl()', 8000);
+
+    </script>
+</body>
+</html>

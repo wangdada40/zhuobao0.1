@@ -58,7 +58,7 @@
                         <label class="fs-field-label fs-anim-upper" for="q1">请输入您的名字?</label>
 
                         <input class="fs-anim-lower" id="q1" name="q1" type="text" placeholder="您的名字" required />
-
+                        @*<button onclick="ce">测试</button>*@
                     </li>
 
                     <li>
@@ -188,40 +188,43 @@
             window.location.href = '../Guide/Animation?userid=' +geid();
 
         };
-
+        function ce(){
+            var name = $('#q1').val();
+            alert(q1);
+        }
 			(function() {
 
-				var formWrap = document.getElementById( 'fs-form-wrap' );
+			    var formWrap = document.getElementById( 'fs-form-wrap' );
 
 
 
-				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+			    [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
 
-					new SelectFx( el, {
+			        new SelectFx( el, {
 
-						stickyPlaceholder: false,
+			            stickyPlaceholder: false,
 
-						onChange: function(val){
+			            onChange: function(val){
 
-							document.querySelector('span.cs-placeholder').style.backgroundColor = val;
+			                document.querySelector('span.cs-placeholder').style.backgroundColor = val;
 
-						}
+			            }
 
-					});
+			        });
 
-				} );
+			    } );
 
+             
 
+			    new FForm( formWrap, {
 
-				new FForm( formWrap, {
+			        onReview : function() {
 
-					onReview : function() {
+			            classie.add( document.body, 'overview' ); // for demo purposes only
 
-						classie.add( document.body, 'overview' ); // for demo purposes only
+			        }
 
-					}
-
-				} );
+			    } );
 
 			})();
 

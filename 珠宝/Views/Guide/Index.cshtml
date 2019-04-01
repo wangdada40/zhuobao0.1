@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="~/css/css2/cs-skin-boxes.css" />
 
     <script src="~/js/modernizr.custom.js"></script>
-
+    <script src="~/js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
@@ -153,7 +153,7 @@
                     </li>
 
                 </ol><!-- /fs-fields -->
-
+                @*url()*@
                 <button    onclick="url()">保存喜好</button>
 
             </form><!-- /fs-form -->
@@ -184,14 +184,13 @@
             return newsid;
         }
         function url() {
-
-            window.location.href = '../Guide/Animation?userid=' +geid();
+           // console.log($(" #q3 ").val())
+           //alert($(" #q3a ").val());
+            window.location.href = '../Guide/Animation?userid=' + geid();
+         
 
         };
-        function ce(){
-            var name = $('#q1').val();
-            alert(q1);
-        }
+ 
 			(function() {
 
 			    var formWrap = document.getElementById( 'fs-form-wrap' );

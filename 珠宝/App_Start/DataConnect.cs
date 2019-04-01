@@ -38,16 +38,10 @@ namespace 珠宝.App_Start
 
             myconn.Open();
             //   String sqlstr = "select * from T_USER where u_name ='" + user + "'";
-
             String sqlstr = sql;
-
-
             SqlDataAdapter myda = new SqlDataAdapter(sqlstr, myconn);
             DataSet myds = new DataSet();
             myda.Fill(myds);
-
-
-
             myda.Dispose();
             myds.Dispose();
             myconn.Close();
@@ -58,17 +52,14 @@ namespace 珠宝.App_Start
         //查
         public DataSet Check(String sql)
         {
-
             myconn.Open();
             String sqlstr = sql;
             SqlDataAdapter myda = new SqlDataAdapter(sqlstr, myconn);
             DataSet myds = new DataSet();
             myda.Fill(myds);
-
             myda.Dispose();
             myds.Dispose();
             myconn.Close();
-
             return myds;
 
         }
@@ -82,10 +73,6 @@ namespace 珠宝.App_Start
             SqlCommand myda2 = new SqlCommand(sqlstr, myconn);
             myda2.ExecuteNonQuery();//执行插入语句
             myconn.Close();
-
-
-
-
         }
     }
 }
